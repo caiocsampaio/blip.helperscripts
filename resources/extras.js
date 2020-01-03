@@ -1,10 +1,11 @@
 const getExtrasScripts = () => {
     return {
-        "userId": "{{contact.identity}}",
-        "originatorMessageId": "{{input.message@id}}",
-        "userEmail": "{{contact.email}}",
         "userName": "{{contact.name}}",
-        "sessionId": "{{sessionId}}"
+        "phoneNumber": "{{contact.phoneNumber}}",
+        "idUser": "{{contact.identity}}",
+        "idMessage": "{{input.message@id}}",
+        "message": "{{input.content}}",
+        "origin": "{{lastState}}"
     }
 }
 
