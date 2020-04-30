@@ -2,8 +2,14 @@ exports.addextrastoscripts = (function () {
 	function ReplaceExtras(searchObject, extrasObj) {
 		Object.keys(searchObject).forEach(function (k) {
 			var action = searchObject[k]
-			if (action['type'] && action['type'] === 'TrackEvent' && Object.keys(action['settings']['extras']).length === 0) {
-				action['settings']['extras'] = extrasObj
+			if (action['type'] && action['type'] === 'TrackEvent') {
+				if (Object.keys(action['settings']['extras']).length === 0) {
+					action['settings']['extras'] = extrasObj
+				}
+				else {
+					let currentExtras = action['settings']['extras'];
+					action['settings']['extras'] = Object.assign(currentExtras, extrasObj)
+				}
 			}
 		})
 		return searchObject
