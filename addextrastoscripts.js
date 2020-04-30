@@ -1,8 +1,26 @@
-var addextrastoscripts = function () {
+const yargs = require("yargs");
+const argv = yargs
+  .option("read", {
+    alias: "r",
+    description: "Input json path",
+    type: "string"
+  })
+  .option("delete", {
+    alias: "d",
+    description: "Name of extras to delete from all trackings separeted by blank spaces (eg.: idUser idMessage)",
+    type: "array"
+  })
+  .help()
+  .alias("help", "h")
+  .argv;
 
+const readPath = argv.r;
+const deleteProperties = argv.d;
+
+var addextrastoscripts = function () {
     var fs = require('fs')
     var exportfile = require('./Modules/exportfile')
-    var jsonPath = process.argv[2]
+    var jsonPath = readPath;
 
     var blipJson = {}
 
@@ -13,7 +31,7 @@ var addextrastoscripts = function () {
     }
 
     var addextras = require ('./Modules/addextras')
-    let flow = addextras.addextrastoscripts(blipJson)
+    let flow = addextras.addextrastoscripts(blipJson, deleteProperties)
 
     exportfile.savefile(flow)
    
