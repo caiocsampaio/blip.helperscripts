@@ -1,9 +1,9 @@
 exports.addextrastoscripts = (function () {
-	function ReplaceExtras(searchObject, extrasObj, deleteProperties, overwrite) {
+	function ReplaceExtras(searchObject, extrasObj, deleteProperties, overwrite, overwriteAll) {
 		Object.keys(searchObject).forEach(function (k) {
 			var action = searchObject[k]
 			if (action['type'] && action['type'] === 'TrackEvent') {
-				if (Object.keys(action['settings']['extras']).length === 0) {
+				if (Object.keys(action['settings']['extras']).length === 0 || overwriteAll) {
 					action['settings']['extras'] = extrasObj
 				}
 				else {
@@ -25,20 +25,20 @@ exports.addextrastoscripts = (function () {
 				}
 			}
 			catch (ex) {
-				console.log(ex);
+				
 			}
 		})
 		return searchObject
 	}
-	return function (blipJson, deleteProperties) {
+	return function (blipJson, deleteProperties, overwrite, overwriteAll) {
 			try {
 				var fs = require('fs')
 				var extrasService = require('./../resources/extras')
 				var extrasObj = extrasService.getExtrasScripts()
 				Object.keys(blipJson).forEach(function (k) {
 					var blipblock = blipJson[k]
-					blipblock['$leavingCustomActions'] = ReplaceExtras(blipblock['$leavingCustomActions'], extrasObj, deleteProperties)
-					blipblock['$enteringCustomActions'] = ReplaceExtras(blipblock['$enteringCustomActions'], extrasObj, deleteProperties)
+					blipblock['$leavingCustomActions'] = ReplaceExtras(blipblock['$leavingCustomActions'], extrasObj, deleteProperties, overwrite, overwriteAll)
+					blipblock['$enteringCustomActions'] = ReplaceExtras(blipblock['$enteringCustomActions'], extrasObj, deleteProperties, overwrite, overwriteAll)
 				})
 
 				return blipJson;

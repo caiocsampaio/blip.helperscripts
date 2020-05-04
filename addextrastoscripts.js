@@ -15,15 +15,23 @@ const argv = yargs
     description: "Overwrite extras values if they already exist",
     type: "boolean"
   })
+  .option("all", {
+    alias: "a",
+    description: "Delete existing extras and add new",
+    type: "boolean"
+  })
   .help()
   .alias("help", "h")
   .argv;
 
-const readPath = argv.r;
-const deleteProperties = argv.d;
-const overwrite = argv.o;
+
 
 var addextrastoscripts = function () {
+    const readPath = argv.r ? argv.r : argv._[0];
+    const deleteProperties = argv.d;
+    const overwrite = argv.o;
+    const overwriteAll = argv.a;
+    
     var fs = require('fs')
     var exportfile = require('./Modules/exportfile')
     var jsonPath = readPath;
@@ -36,7 +44,7 @@ var addextrastoscripts = function () {
       console.log(error)
     }
     var addextras = require ('./Modules/addextras')
-    let flow = addextras.addextrastoscripts(blipJson, deleteProperties, overwrite)
+    let flow = addextras.addextrastoscripts(blipJson, deleteProperties, overwrite, overwriteAll)
 
     exportfile.savefile(flow)
    
