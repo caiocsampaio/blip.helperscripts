@@ -1,5 +1,5 @@
 exports.addextrastoscripts = (function () {
-	function ReplaceExtras(searchObject, extrasObj, deleteProperties) {
+	function ReplaceExtras(searchObject, extrasObj, deleteProperties, overwrite) {
 		Object.keys(searchObject).forEach(function (k) {
 			var action = searchObject[k]
 			if (action['type'] && action['type'] === 'TrackEvent') {
@@ -8,7 +8,7 @@ exports.addextrastoscripts = (function () {
 				}
 				else {
 					let currentExtras = action['settings']['extras'];
-					action['settings']['extras'] = Object.assign(currentExtras, extrasObj)
+					action['settings']['extras'] = overwrite ? {...currentExtras, ...extrasObj} : {...extrasObj, ...currentExtras}
 				}
 			}
 

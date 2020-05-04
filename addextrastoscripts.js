@@ -10,12 +10,18 @@ const argv = yargs
     description: "Name of extras to delete from all trackings separeted by blank spaces (eg.: idUser idMessage)",
     type: "array"
   })
+  .option("overwrite", {
+    alias: "o",
+    description: "Overwrite extras values if they already exist",
+    type: "boolean"
+  })
   .help()
   .alias("help", "h")
   .argv;
 
 const readPath = argv.r;
 const deleteProperties = argv.d;
+const overwrite = argv.o;
 
 var addextrastoscripts = function () {
     var fs = require('fs')
@@ -29,9 +35,8 @@ var addextrastoscripts = function () {
     } catch (error) {
       console.log(error)
     }
-
     var addextras = require ('./Modules/addextras')
-    let flow = addextras.addextrastoscripts(blipJson, deleteProperties)
+    let flow = addextras.addextrastoscripts(blipJson, deleteProperties, overwrite)
 
     exportfile.savefile(flow)
    
