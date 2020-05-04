@@ -2,10 +2,10 @@ const getExtrasScripts = () => {
     return {
         "userName": "{{contact.name}}",
         "phoneNumber": "{{contact.phoneNumber}}",
-        "message": "{{input.content}}",
-        "origin": "{{lastState}}",
         "perfilMovel": "{{mobileClientType}}",
-        "lastTicketId": "{{lastTicketId}}"
+        "lastTicketId": "{{lastTicketId}}",
+        "message": "{{input.content}}",
+        "origin": "{{lastState}}"
     }
 }
 
