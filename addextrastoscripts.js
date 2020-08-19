@@ -46,7 +46,8 @@ var addextrastoscripts = function () {
     var addextras = require ('./Modules/addextras')
     let flow = addextras.addextrastoscripts(blipJson, deleteProperties, overwrite, overwriteAll)
 
-    exportfile.savefile(flow)
+    let pathLength = readPath.split('\\').length
+    exportfile.savefile(flow, readPath.split('\\')[pathLength - 1])
    
 }
 
