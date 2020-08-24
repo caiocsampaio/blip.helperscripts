@@ -5,7 +5,8 @@ const getExtrasScripts = () => {
         "perfilMovel": "{{mobileClientType}}",
         "lastTicketId": "{{lastTicketId}}",
         "message": "{{input.content}}",
-        "origin": "{{lastState}}"
+        "origin": "{{lastState}}",
+        "canalSelecao": "{{CanalSelecao}}"
     }
 }
 
