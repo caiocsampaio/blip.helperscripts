@@ -6,7 +6,9 @@ const getExtrasScripts = () => {
         "lastTicketId": "{{lastTicketId}}",
         "message": "{{input.content}}",
         "origin": "{{lastState}}",
-        "canalSelecao": "{{CanalSelecao}}"
+        "canalSelecao": "{{CanalSelecao}}",
+        "globalSessionId": "{{globalSessionId}}",
+        "userSessionCount": "{{userSessionCount}}"
     }
 }
 
