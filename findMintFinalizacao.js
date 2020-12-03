@@ -13,7 +13,7 @@ const argv = yargs
 
 var addextrastoscripts = function () {
     var readPath = argv.r ? argv.r : argv._[0];
-    readPath = 'D:\\Users\\caiosp\\Desktop\\finalizacoes\\claromoveldev.json'
+    
     var fs = require('fs')
     var exportfile = require('./Modules/exportfile')
     var jsonPath = readPath;
