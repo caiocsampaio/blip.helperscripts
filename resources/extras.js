@@ -8,7 +8,8 @@ const getExtrasScripts = () => {
         "origin": "{{lastState}}",
         "canalSelecao": "{{CanalSelecao}}",
         "globalSessionId": "{{globalSessionId}}",
-        "userSessionCount": "{{userSessionCount}}"
+        "userSessionCount": "{{userSessionCount}}",
+        "contrato": "{{contrato}}"
     }
 }
 

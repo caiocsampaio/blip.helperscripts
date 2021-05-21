@@ -10,6 +10,11 @@ const argv = yargs
     description: "Saves only the titles of each block as list",
     type: "bool"
   })
+  .option("url", {
+    alias: "u",
+    description: "Saves only the URLs of each block as list",
+    type: "bool"
+  })
   .help()
   .alias("help", "h")
   .argv;
@@ -19,6 +24,7 @@ const argv = yargs
 var addextrastoscripts = function () {
     const readPath = argv.r ? argv.r : argv._[0];
     const isTitleOnly = argv.t;
+    const isUrlOnly = argv.u;
     
     var fs = require('fs')
     var exportfile = require('./Modules/exportfile')
@@ -32,10 +38,10 @@ var addextrastoscripts = function () {
       console.log(error)
     }
     var http = require ('./Modules/http')
-    let httpBlocks = http.findHttp(blipJson, isTitleOnly);
+    let httpBlocks = http.findHttp(blipJson, isTitleOnly, isUrlOnly);
 
     let pathLength = readPath.split('\\').length
-    exportfile.savefile(httpBlocks, 'http_' + readPath.split('\\')[pathLength - 1])
+    exportfile.savefile(httpBlocks, 'http_' + readPath.split('\\')[pathLength - 1].split('.')[0], isUrlOnly)
    
 }
 
